@@ -24,7 +24,7 @@ import NxActiveState from '@jswork/next-active-state';
 const data = { key: 1, value: 2 };
 const activeState = new NxActiveState(data);
 
-activeState.on('change', (arg) => {
+const res = activeState.on('change', (arg) => {
   console.log(arg);
 });
 
@@ -36,6 +36,9 @@ activeState.state.key = 122;
 
 // delete
 delete activeState.state.value;
+
+// destroy resource
+res.destroy();
 ```
 
 ## license
