@@ -10,10 +10,9 @@
     methods: {
       __initialized__: false,
       init: function (inData) {
-        var self = this;
-        this.$event = nx.mix(this, EventMitt);
-        var handler = function (key, args) {
-          self.__initialized__ && self.$event.emit('change', { action: key, args: args });
+        nx.mix(this, EventMitt);
+        var handler = (key, args) => {
+          this.__initialized__ && this.emit('change', { action: key, args: args });
           return Reflect[key].apply(null, args);
         };
 
@@ -34,9 +33,6 @@
           }
         });
         this.__initialized__ = true;
-      },
-      on: function (inName, inHandler) {
-        return self.$event.on(inName, inHandler);
       },
       to: function () {
         return JSON.parse(JSON.stringify(this.state));
