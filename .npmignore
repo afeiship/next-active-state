@@ -21,3 +21,4 @@ docs
 
 # vscode localhistory
 .history
+jest.setup.js

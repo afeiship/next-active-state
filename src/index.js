@@ -18,7 +18,12 @@
 
         var proxyer = {
           set: function () {
-            return handler('set', nx.slice(arguments));
+            var args = nx.slice(arguments);
+            var value = args[2];
+            if (value && typeof value === 'object') {
+              args[2] = new Proxy(value, proxyer);
+            }
+            return handler('set', args);
           },
           deleteProperty: function () {
             return handler('deleteProperty', nx.slice(arguments));
@@ -26,12 +31,7 @@
         };
 
         this.state = new Proxy(inData, proxyer);
-
-        nxDeepEach(this.state, function (key, value, target) {
-          if (value && typeof value === 'object') {
-            target[key] = new Proxy(value, proxyer);
-          }
-        });
+        nxDeepEach(this.state, (key, value, target) => (target[key] = value));
         this.__initialized__ = true;
       },
       to: function () {

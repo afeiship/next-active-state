@@ -38,7 +38,6 @@
       // delete
       delete activeState.state.k2;
 
-      // console.log(activeState.state);
       expect(count).toBe(4);
     });
 
@@ -58,6 +57,9 @@
 
       activeState.state[0].checked = true;
       expect(count).toBe(1);
+      // push or remove will trigger 2 times
+      activeState.state.push({ checked: true, value: 'fff' });
+      expect(count).toBe(3);
     });
   });
 })();
