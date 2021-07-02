@@ -30,8 +30,10 @@ activeState.on('change', (arg) => {
 
 // create
 activeState.state.newKey = 'I am new.';
+
 // update
 activeState.state.key = 122;
+
 // delete
 delete activeState.state.value;
 ```
