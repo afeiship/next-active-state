@@ -1,10 +1,15 @@
-(function() {
+(function () {
   const NxActiveState = require('../src');
+  // const NxActiveState = require('./src');
 
-  describe('NxActiveState.methods', function() {
-    test('init', function() {
-      const data = { key: 1, value: 2 };
-      expect(!!data).toBe(true);
+  describe('NxActiveState.methods', function () {
+    test('init', function () {
+      var data = { key: 1, value: 2 };
+      var activeState = new NxActiveState(data);
+      activeState.on('change', (arg) => {
+        console.log(arg);
+      });
+      activeState.state.key = 122;
     });
   });
 })();

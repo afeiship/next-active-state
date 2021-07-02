@@ -37,5 +37,9 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
+  },
+  "dependencies": {
+    "@jswork/event-mitt": "^1.0.2",
+    "@jswork/next-deep-each": "^1.0.0"
   }
 }
