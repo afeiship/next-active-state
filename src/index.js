@@ -15,14 +15,14 @@
         this.$handler = {
           set: function () {
             if (!self.__initialized__) return;
-            var args = arguments;
+            var args = nx.slice(arguments);
             var data = { action: 'set', args: args };
             self.$event.emit('change', data);
             return Reflect.set.apply(null, args);
           },
           deleteProperty: function () {
             if (!self.__initialized__) return;
-            var args = arguments;
+            var args = nx.slice(arguments);
             var data = { action: 'deleteProperty', args: args };
             self.$event.emit('change', data);
             return Reflect.deleteProperty.apply(null, args);

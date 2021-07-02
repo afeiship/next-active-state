@@ -28,6 +28,8 @@ const activeState = new NxActiveState(data);
 activeState.on('change', (arg) => {
   console.log(arg);
 });
+
+// set
 activeState.state.key = 122;
 ```
 
