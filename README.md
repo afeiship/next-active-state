@@ -28,8 +28,12 @@ activeState.on('change', (arg) => {
   console.log(arg);
 });
 
-// set
+// create
+activeState.state.newKey = 'I am new.';
+// update
 activeState.state.key = 122;
+// delete
+delete activeState.state.value;
 ```
 
 ## license
