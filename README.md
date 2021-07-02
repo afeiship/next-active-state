@@ -12,11 +12,11 @@ npm install -S @jswork/next-active-state
 ```
 
 ## apis
-| api  | params | description                          |
-| ---- | ------ | ------------------------------------ |
-| from | -      | Wrap data to proxy.                  |
-| to   | -      | Unwrap proxy data to pure js object. |
-| on   | -      | Watch changed and return destroy fn. |
+| api | params | description                          |
+| --- | ------ | ------------------------------------ |
+| to  | -      | Unwrap proxy data to pure js object. |
+| on  | -      | Watch changed and return destroy fn. |
+| new | -      | Wrap data to activeState instance.                  |
 
 ## usage
 ```js
