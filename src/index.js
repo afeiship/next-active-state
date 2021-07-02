@@ -10,24 +10,26 @@
     methods: {
       __initialized__: false,
       init: function (inData) {
+        var self = this;
         this.$event = nx.mix(this, EventMitt);
-        var handler = (key) => {
-          if (!this.__initialized__) return;
-          var args = nx.slice(arguments);
-          var data = { action: key, args: args };
-          this.$event.emit('change', data);
+        var handler = function (key, args) {
+          self.__initialized__ && self.$event.emit('change', { action: key, args: args });
           return Reflect[key].apply(null, args);
         };
 
         var proxyer = {
-          set: () => handler('set'),
-          deleteProperty: () => handler('deleteProperty')
+          set: function () {
+            return handler('set', nx.slice(arguments));
+          },
+          deleteProperty: function () {
+            return handler('deleteProperty', nx.slice(arguments));
+          }
         };
 
         this.state = new Proxy(inData, proxyer);
 
         nxDeepEach(this.state, function (key, value, target) {
-          if (typeof value === 'object') {
+          if (value && typeof value === 'object') {
             target[key] = new Proxy(value, proxyer);
           }
         });

@@ -41,5 +41,23 @@
       // console.log(activeState.state);
       expect(count).toBe(4);
     });
+
+    test('pure array should be changed', () => {
+      var data = [
+        { checked: false, value: 'A new template1' },
+        { checked: false, value: 'A new template2' },
+        { checked: false, value: 'A new template3' },
+        { checked: false, value: 'A new template4' }
+      ];
+
+      var activeState = new NxActiveState(data);
+      var count = 0;
+      var res = activeState.on('change', (arg) => {
+        count++;
+      });
+
+      activeState.state[0].checked = true;
+      expect(count).toBe(1);
+    });
   });
 })();
