@@ -21,5 +21,25 @@
       activeState.state.key2 = 2;
       expect(count).toBe(4);
     });
+
+    test('basic curd for object', () => {
+      var data = {};
+      var activeState = new NxActiveState(data);
+      var count = 0;
+      var res = activeState.on('change', (arg) => {
+        count++;
+      });
+
+      // create
+      activeState.state.k1 = 1;
+      activeState.state.k2 = 1;
+      // update
+      activeState.state.k3 = 123;
+      // delete
+      delete activeState.state.k2;
+
+      // console.log(activeState.state);
+      expect(count).toBe(4);
+    });
   });
 })();
