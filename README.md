@@ -1,21 +1,39 @@
-# vue-docs
+# next-active-state
+> Mini state mananger based on proxy.
 
-> A docs template based on vue.
+[![version][version-image]][version-url]
+[![license][license-image]][license-url]
+[![size][size-image]][size-url]
+[![download][download-image]][download-url]
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+## installation
+```bash
+npm install -S @jswork/next-active-state
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## apis
+| api | params | description   |
+|-----|--------|---------------|
+| get | -      | desc balabala |
+
+## usage
+```js
+import NxActiveState from '@jswork/next-active-state';
+
+// code goes here:
+```
+
+## license
+Code released under [the MIT license](https://github.com/afeiship/next-active-state/blob/master/LICENSE.txt).
+
+[version-image]: https://img.shields.io/npm/v/@jswork/next-active-state
+[version-url]: https://npmjs.org/package/@jswork/next-active-state
+
+[license-image]: https://img.shields.io/npm/l/@jswork/next-active-state
+[license-url]: https://github.com/afeiship/next-active-state/blob/master/LICENSE.txt
+
+[size-image]: https://img.shields.io/bundlephobia/minzip/@jswork/next-active-state
+[size-url]: https://github.com/afeiship/next-active-state/blob/master/dist/next-active-state.min.js
+
+[download-image]: https://img.shields.io/npm/dm/@jswork/next-active-state
+[download-url]: https://www.npmjs.com/package/@jswork/next-active-state

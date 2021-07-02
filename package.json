@@ -1,61 +1,41 @@
 {
-  "name": "vue-docs",
+  "name": "@jswork/next-active-state",
   "version": "1.0.0",
-  "description": "A docs template based on vue.",
-  "author": "afeiship <1290657123@qq.com>",
-  "private": true,
+  "description": "Mini state mananger based on proxy.",
+  "homepage": "https://github.com/afeiship/next-active-state",
+  "author": {
+    "name": "afei",
+    "email": "1290657123@qq.com"
+  },
   "scripts": {
-    "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "gulp",
+    "test": "jest",
+    "release": "release-it"
   },
-  "dependencies": {
-    "element-ui": "^1.3.1",
-    "vue": "^2.2.6",
-    "vue-router": "^2.3.1"
-  },
+  "main": "dist/index.js",
+  "license": "MIT",
   "devDependencies": {
-    "autoprefixer": "^6.7.2",
-    "babel-core": "^6.22.1",
-    "babel-loader": "^6.2.10",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-env": "^1.3.2",
-    "babel-preset-stage-2": "^6.22.0",
-    "babel-register": "^6.22.0",
-    "chalk": "^1.1.3",
-    "connect-history-api-fallback": "^1.3.0",
-    "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.28.0",
-    "eventsource-polyfill": "^0.9.6",
-    "express": "^4.14.1",
-    "extract-text-webpack-plugin": "^2.0.0",
-    "file-loader": "^0.11.1",
-    "friendly-errors-webpack-plugin": "^1.1.3",
-    "html-webpack-plugin": "^2.28.0",
-    "http-proxy-middleware": "^0.17.3",
-    "webpack-bundle-analyzer": "^2.2.1",
-    "semver": "^5.3.0",
-    "shelljs": "^0.7.6",
-    "opn": "^4.0.2",
-    "optimize-css-assets-webpack-plugin": "^1.3.0",
-    "ora": "^1.2.0",
-    "rimraf": "^2.6.0",
-    "url-loader": "^0.5.8",
-    "vue-loader": "^11.3.4",
-    "vue-style-loader": "^2.0.5",
-    "vue-template-compiler": "^2.2.6",
-    "webpack": "^2.3.3",
-    "webpack-dev-middleware": "^1.10.0",
-    "webpack-hot-middleware": "^2.18.0",
-    "webpack-merge": "^4.1.0"
+    "@babel/core": "^7.13.14",
+    "@babel/preset-env": "^7.13.12",
+    "@jswork/gulp-pkg-header": "^1.0.4",
+    "@jswork/next": "^1.0.5",
+    "del": "^6.0.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-debug": "^4.0.0",
+    "gulp-ignore": "^3.0.0",
+    "gulp-load-plugins": "^2.0.6",
+    "gulp-rename": "^2.0.0",
+    "gulp-size": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "jest": "^26.6.3",
+    "release-it": "^14.2.2",
+    "uglify-js": "3.12.4",
+    "uglify-save-license": "^0.4.1"
   },
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
 }
