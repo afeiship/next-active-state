@@ -22,20 +22,21 @@ npm install -S @jswork/next-active-state
 import NxActiveState from '@jswork/next-active-state';
 
 const data = { key: 1, value: 2 };
-const activeState = new NxActiveState(data);
+const instance = new NxActiveState(data);
+const state = instance.state;
 
-const res = activeState.on('change', (arg) => {
+const res = instance.on('change', (arg) => {
   console.log(arg);
 });
 
 // create
-activeState.state.newKey = 'I am new.';
+state.newKey = 'I am new.';
 
 // update
-activeState.state.key = 122;
+state.key = 122;
 
 // delete
-delete activeState.state.value;
+delete state.value;
 
 // destroy resource
 res.destroy();
