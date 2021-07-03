@@ -3,6 +3,7 @@
   var nx = global.nx || require('@jswork/next');
   var EventMitt = global.EventMitt || require('@jswork/event-mitt');
   var nxDeepEach = nx.deepEach || require('@jswork/next-deep-each');
+  var nxDeepClone = nx.deepClone || require('@jswork/next-deep-clone');
 
   // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 
@@ -35,7 +36,7 @@
         this.__initialized__ = true;
       },
       to: function () {
-        return JSON.parse(JSON.stringify(this.state));
+        return nxDeepClone(this.state);
       }
     }
   });

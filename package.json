@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "@jswork/event-mitt": "^1.0.2",
+    "@jswork/next-deep-clone": "^1.0.0",
     "@jswork/next-deep-each": "^1.0.0"
   },
   "keywords": [

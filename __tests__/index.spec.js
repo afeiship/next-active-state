@@ -61,5 +61,17 @@
       activeState.state.push({ checked: true, value: 'fff' });
       expect(count).toBe(3);
     });
+
+    test('to an new object', () => {
+      var data = [
+        { checked: false, value: 'A new template1' },
+        { checked: false, value: 'A new template2' },
+        { checked: false, value: 'A new template3' },
+        { checked: false, value: 'A new template4' }
+      ];
+
+      var activeState = new NxActiveState(data);
+      expect(activeState.to()).toEqual(data);
+    });
   });
 })();
