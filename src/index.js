@@ -4,7 +4,6 @@
   var EventMitt = global.EventMitt || require('@jswork/event-mitt');
   var nxDeepEach = nx.deepEach || require('@jswork/next-deep-each');
   var nxDeepClone = nx.deepClone || require('@jswork/next-deep-clone');
-  var debounce = require('debounce');
 
   // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 
@@ -12,7 +11,7 @@
     statics: {
       use: function (inData, inCallback) {
         var instance = new this(inData);
-        instance.one('change', debounce(inCallback, 100));
+        instance.one('change', inCallback);
         return instance.state;
       },
       toJS: function (inState) {
@@ -24,7 +23,7 @@
       init: function (inData) {
         nx.mix(this, EventMitt);
         var handler = (key, args) => {
-          this.__initialized__ && this.emit('change', { action: key, args: args });
+          this.should(key, args) && this.emit('change', { action: key, args: args });
           return Reflect[key].apply(null, args);
         };
 
@@ -48,6 +47,13 @@
       },
       to: function () {
         return nxDeepClone(this.state);
+      },
+      should: function (key, args) {
+        if (!this.__initialized__) return false;
+        if (key === 'set' && args[1] === 'length' && Array.isArray(args[0])) {
+          return false;
+        }
+        return true;
       }
     }
   });

@@ -59,7 +59,7 @@
       expect(count).toBe(1);
       // push or remove will trigger 2 times
       activeState.state.push({ checked: true, value: 'fff' });
-      expect(count).toBe(3);
+      expect(count).toBe(2);
     });
 
     test('to an new object', () => {
@@ -99,7 +99,18 @@
     });
 
     test('use api for array', () => {
+      var times = 0;
       var data = [1, 2, 3];
+      var state = NxActiveState.use(data, (event) => {
+        times++;
+      });
+
+      state.push('a');
+      state.push('b');
+      state.pop();
+
+      expect(times).toBe(3);
+      expect(state).toEqual([1, 2, 3, 'a']);
     });
   });
 })();
