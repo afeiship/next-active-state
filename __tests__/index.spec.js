@@ -74,7 +74,7 @@
       expect(activeState.to()).toEqual(data);
     });
 
-    test('use api:', () => {
+    test('use api for deep array -> object:', () => {
       var times = 0;
       var data = [
         { checked: false, value: 'A new template1' },
@@ -96,6 +96,10 @@
         { checked: false, value: 'A new template3' },
         { checked: false, value: 'A new template4' }
       ]);
+    });
+
+    test('use api for array', () => {
+      var data = [1, 2, 3];
     });
   });
 })();
