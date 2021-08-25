@@ -73,5 +73,29 @@
       var activeState = new NxActiveState(data);
       expect(activeState.to()).toEqual(data);
     });
+
+    test('use api:', () => {
+      var times = 0;
+      var data = [
+        { checked: false, value: 'A new template1' },
+        { checked: false, value: 'A new template2' },
+        { checked: false, value: 'A new template3' },
+        { checked: false, value: 'A new template4' }
+      ];
+
+      var state = NxActiveState.use(data, () => {
+        times++;
+      });
+
+      state[0].checked = true;
+      state[0].value = 'xxx';
+      expect(times).toBe(2);
+      expect(state).toEqual([
+        { checked: true, value: 'xxx' },
+        { checked: false, value: 'A new template2' },
+        { checked: false, value: 'A new template3' },
+        { checked: false, value: 'A new template4' }
+      ]);
+    });
   });
 })();

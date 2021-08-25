@@ -8,6 +8,16 @@
   // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 
   var NxActiveState = nx.declare('nx.ActiveState', {
+    statics: {
+      use: function (inData, inCallback) {
+        var instance = new this(inData);
+        instance.one('change', inCallback);
+        return instance.state;
+      },
+      toJS: function (inState) {
+        return nxDeepClone(inState);
+      }
+    },
     methods: {
       __initialized__: false,
       init: function (inData) {

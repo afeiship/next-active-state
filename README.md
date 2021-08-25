@@ -12,10 +12,12 @@ npm install -S @jswork/next-active-state
 ```
 
 ## apis
-| api | params | description                          |
-| --- | ------ | ------------------------------------ |
-| to  | -      | Unwrap proxy data to pure js object. |
-| on  | -      | Watch changed and return destroy fn. |
+| api   | params | description                          |
+| ----- | ------ | ------------------------------------ |
+| to    | -      | Unwrap proxy data to pure js object. |
+| on    | -      | Watch changed and return destroy fn. |
+| #use  | -      | Use object with listener.            |
+| #toJS | -      | Transform to pure js object.         |
 
 ## usage
 ```js
@@ -41,6 +43,26 @@ delete state.value;
 // destroy resource
 res.destroy();
 ```
+
+```js
+// simple use
+const data = { key: 1, value: 2 };
+const state = NxActiveState.use(data, (arg) => {
+  console.log(arg);
+});
+
+// create
+state.newKey = 'I am new.';
+
+// update
+state.key = 122;
+
+// delete
+delete state.value;
+
+// no need to destroy resource
+```
+
 
 ## license
 Code released under [the MIT license](https://github.com/afeiship/next-active-state/blob/master/LICENSE.txt).
