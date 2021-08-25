@@ -6,6 +6,7 @@
   var nxDeepClone = nx.deepClone || require('@jswork/next-deep-clone');
 
   // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+  // https://github.com/sindresorhus/on-change
 
   var NxActiveState = nx.declare('nx.ActiveState', {
     statics: {
