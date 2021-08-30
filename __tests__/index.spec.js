@@ -112,5 +112,26 @@
       expect(times).toBe(3);
       expect(state).toEqual([1, 2, 3, 'a']);
     });
+
+    test('use api reset manual will trigger change', () => {
+      var times = 0;
+      var data = [1, 2, 3];
+      var inst = new NxActiveState(data);
+      var state = inst.state;
+
+      inst.one('change', () => {
+        times++;
+      });
+
+      state.push('a');
+      state.push('b');
+      state.pop();
+
+      expect(times).toBe(3);
+      expect(inst.get()).toEqual([1, 2, 3, 'a']);
+      inst.reset();
+      expect(inst.get()).toEqual([1, 2, 3]);
+      expect(times).toBe(4);
+    });
   });
 })();

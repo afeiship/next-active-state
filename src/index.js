@@ -23,6 +23,7 @@
       __initialized__: false,
       init: function (inData) {
         nx.mix(this, EventMitt);
+        this.cloned = nxDeepClone(inData);
         var handler = (key, args) => {
           var res = Reflect[key].apply(null, args);
           this.should(key, args) && this.emit('change', { action: key, args: args });
@@ -46,6 +47,10 @@
         this.state = new Proxy(inData, proxyer);
         nxDeepEach(this.state, (key, value, target) => (target[key] = value));
         this.__initialized__ = true;
+      },
+      reset: function () {
+        this.state = nxDeepClone(this.cloned);
+        this.emit('change', { action: 'reset', args: null });
       },
       get: function () {
         return nxDeepClone(this.state);
