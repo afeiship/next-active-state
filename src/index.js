@@ -15,7 +15,7 @@
         instance.one('change', inCallback);
         return instance.state;
       },
-      toJS: function (inState) {
+      get: function (inState) {
         return nxDeepClone(inState);
       }
     },
@@ -46,7 +46,7 @@
         nxDeepEach(this.state, (key, value, target) => (target[key] = value));
         this.__initialized__ = true;
       },
-      to: function () {
+      get: function () {
         return nxDeepClone(this.state);
       },
       should: function (key, args) {

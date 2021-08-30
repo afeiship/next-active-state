@@ -71,7 +71,7 @@
       ];
 
       var activeState = new NxActiveState(data);
-      expect(activeState.to()).toEqual(data);
+      expect(activeState.get()).toEqual(data);
     });
 
     test('use api for deep array -> object:', () => {
