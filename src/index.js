@@ -24,8 +24,9 @@
       init: function (inData) {
         nx.mix(this, EventMitt);
         var handler = (key, args) => {
+          var res = Reflect[key].apply(null, args);
           this.should(key, args) && this.emit('change', { action: key, args: args });
-          return Reflect[key].apply(null, args);
+          return res;
         };
 
         var proxyer = {
