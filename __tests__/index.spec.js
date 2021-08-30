@@ -113,7 +113,7 @@
       expect(state).toEqual([1, 2, 3, 'a']);
     });
 
-    test('use api reset manual will trigger change', () => {
+    test('array: use api reset manual will trigger change', () => {
       var times = 0;
       var data = [1, 2, 3];
       var inst = new NxActiveState(data);
@@ -133,6 +133,29 @@
       inst.reset();
       expect(inst.touched()).toBe(false);
       expect(inst.get()).toEqual([1, 2, 3]);
+      expect(times).toBe(4);
+    });
+
+    test('object: use api reset manual will trigger change', () => {
+      var times = 0;
+      var data = { name: 'afei' };
+      var inst = new NxActiveState(data);
+      var state = inst.state;
+
+      inst.one('change', () => {
+        times++;
+      });
+
+      state.name = 'jswork';
+      state.age = 108;
+      state.items = [];
+
+      expect(inst.touched()).toBe(true);
+      expect(times).toBe(3);
+      expect(inst.get()).toEqual({ name: 'jswork', age: 108, items: [] });
+      inst.reset();
+      expect(inst.touched()).toBe(false);
+      expect(inst.get()).toEqual({ name: 'afei' });
       expect(times).toBe(4);
     });
   });
