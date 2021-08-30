@@ -1,6 +1,6 @@
 {
   "name": "@jswork/next-active-state",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Mini state mananger based on proxy.",
   "homepage": "https://github.com/afeiship/next-active-state",
   "author": {
