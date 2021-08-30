@@ -49,8 +49,10 @@
         this.__initialized__ = true;
       },
       reset: function () {
-        this.state = nxDeepClone(this.cloned);
+        var res = nxDeepClone(this.cloned);
+        this.state = res;
         this.emit('change', { action: 'reset', args: null });
+        return res;
       },
       get: function () {
         return nxDeepClone(this.state);
