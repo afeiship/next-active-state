@@ -4,7 +4,7 @@
   var EventMitt = global.EventMitt || require('@jswork/event-mitt');
   var nxDeepEach = nx.deepEach || require('@jswork/next-deep-each');
   var nxDeepClone = nx.deepClone || require('@jswork/next-deep-clone');
-
+  var deepEqual = require('fast-deep-equal');
   // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
   // https://github.com/sindresorhus/on-change
 
@@ -17,6 +17,11 @@
       },
       get: function (inState) {
         return nxDeepClone(inState);
+      }
+    },
+    properties: {
+      touched: function () {
+        return !deepEqual(this.state, this.cloned);
       }
     },
     methods: {

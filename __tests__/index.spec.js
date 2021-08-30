@@ -127,9 +127,11 @@
       state.push('b');
       state.pop();
 
+      expect(inst.touched).toBe(true);
       expect(times).toBe(3);
       expect(inst.get()).toEqual([1, 2, 3, 'a']);
       inst.reset();
+      expect(inst.touched).toBe(false);
       expect(inst.get()).toEqual([1, 2, 3]);
       expect(times).toBe(4);
     });
