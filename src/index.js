@@ -19,6 +19,11 @@
         return nxDeepClone(inState);
       }
     },
+    properties: {
+      touched: function () {
+        return !deepEqual(this.state, this.cloned);
+      }
+    },
     methods: {
       __initialized__: false,
       init: function (inData) {
@@ -48,13 +53,10 @@
         nxDeepEach(this.state, (key, value, target) => (target[key] = value));
         this.__initialized__ = true;
       },
-      touched: function () {
-        return !deepEqual(this.state, this.cloned);
-      },
       reset: function () {
         var res = nxDeepClone(this.cloned);
         this.state = res;
-        this.emit('change', { action: 'reset', args: null });
+        this.emit('change', { action: 'reset', args: [] });
         return res;
       },
       get: function () {
