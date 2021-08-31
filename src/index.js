@@ -4,9 +4,23 @@
   var EventMitt = global.EventMitt || require('@jswork/event-mitt');
   var nxDeepEach = nx.deepEach || require('@jswork/next-deep-each');
   var nxDeepClone = nx.deepClone || require('@jswork/next-deep-clone');
+  var nxIsEmptyObject = nx.isEmptyObject || require('@jswork/next-is-empty-object');
+  var nxEmpty = nx.empty || require('@jswork/next-empty');
   var deepEqual = require('fast-deep-equal');
   // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
   // https://github.com/sindresorhus/on-change
+
+  var merge = function (state, initial) {
+    nxEmpty(state);
+    var isArray = Array.isArray(initial);
+    if (isArray) {
+      initial.forEach((item) => state.push(item));
+    } else {
+      if (!nxIsEmptyObject(initial)) {
+        nx.mix(state, initial);
+      }
+    }
+  };
 
   var NxActiveState = nx.declare('nx.ActiveState', {
     statics: {
@@ -26,6 +40,7 @@
     },
     methods: {
       __initialized__: false,
+      __muted__: false,
       init: function (inData) {
         nx.mix(this, EventMitt);
         this.cloned = nxDeepClone(inData);
@@ -54,16 +69,19 @@
         this.__initialized__ = true;
       },
       reset: function () {
-        var res = nxDeepClone(this.cloned);
-        this.state = res;
-        this.emit('change', { action: 'reset', args: [] });
-        return res;
+        var initial = nxDeepClone(this.cloned);
+        this.__muted__ = true;
+        merge(this.state, initial);
+        this.__muted__ = false;
+        this.emit('change', { action: 'reset', args: null });
+        return initial;
       },
       get: function () {
         return nxDeepClone(this.state);
       },
       should: function (key, args) {
         if (!this.__initialized__) return false;
+        if (this.__muted__) return false;
         if (key === 'set' && args[1] === 'length' && Array.isArray(args[0])) {
           return false;
         }
