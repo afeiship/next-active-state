@@ -46,7 +46,7 @@
         this.cloned = nxDeepClone(inData);
         var handler = (key, args) => {
           var res = Reflect[key].apply(null, args);
-          this.should(key, args) && this.emit('change', { action: key, args: args });
+          !this.ignore(key, args) && this.emit('change', { action: key, args: args });
           return res;
         };
 
@@ -79,13 +79,11 @@
       get: function () {
         return nxDeepClone(this.state);
       },
-      should: function (key, args) {
-        if (!this.__initialized__) return false;
-        if (this.__muted__) return false;
-        if (key === 'set' && args[1] === 'length' && Array.isArray(args[0])) {
-          return false;
-        }
-        return true;
+      ignore: function (key, args) {
+        if (!this.__initialized__) return true;
+        if (this.__muted__) return true;
+        if (key === 'set' && args[1] === 'length' && Array.isArray(args[0])) return true;
+        return false;
       }
     }
   });
