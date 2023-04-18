@@ -10,9 +10,9 @@ import '@jswork/next-empty';
 // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 // https://github.com/sindresorhus/on-change
 
-var merge = function (state, initial) {
+const merge = function (state, initial) {
   nx.empty(state);
-  var isArray = Array.isArray(initial);
+  const isArray = Array.isArray(initial);
   if (isArray) {
     initial.forEach((item) => state.push(item));
   } else {
@@ -25,7 +25,7 @@ var merge = function (state, initial) {
 const NxActiveState = nx.declare('nx.ActiveState', {
   statics: {
     use: function (inData, inCallback) {
-      var instance = new this(inData);
+      const instance = new this(inData);
       instance.one('change', inCallback);
       return instance.state;
     },
@@ -44,16 +44,16 @@ const NxActiveState = nx.declare('nx.ActiveState', {
     init: function (inData) {
       nx.mix(this, EventMitt);
       this.cloned = nx.deepClone(inData);
-      var handler = (key, args) => {
-        var res = Reflect[key].apply(null, args);
+      const handler = (key, args) => {
+        const res = Reflect[key].apply(null, args);
         !this.ignore(key, args) && this.emit('change', { action: key, args: args });
         return res;
       };
 
-      var proxyer = {
+      const proxyer = {
         set: function () {
-          var args = nx.slice(arguments);
-          var value = args[2];
+          const args = nx.slice(arguments);
+          const value = args[2];
           if (value && typeof value === 'object') {
             args[2] = new Proxy(value, proxyer);
           }
@@ -69,7 +69,7 @@ const NxActiveState = nx.declare('nx.ActiveState', {
       this.__initialized__ = true;
     },
     reset: function () {
-      var initial = nx.deepClone(this.cloned);
+      const initial = nx.deepClone(this.cloned);
       this.__muted__ = true;
       merge(this.state, initial);
       this.__muted__ = false;
